@@ -178,6 +178,8 @@ class OctoInference:
             input_observation,
             self.task,
             rng=key,
+            # NOTE: check whether that is how it is expected
+            timestep_pad_mask=pad_mask,
         )
         raw_actions = norm_raw_actions * self.action_std[None] + self.action_mean[None]
 

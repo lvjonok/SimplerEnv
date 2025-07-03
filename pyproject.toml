@@ -1,11 +1,29 @@
-[tool.black]
-# https://github.com/psf/black
-line-length = 120
-target-version = ["py310"]
-exclude = "(.eggs|.git|.hg|.mypy_cache|.nox|.tox|.venv|.svn|_build|buck-out|build|dist)"
+[project]
+name = "simplerenv"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "coacd>=1.0.7",
+    "mani-skill>=3.0.0b21",
+    "octo",
+    "rlds>=0.1.8",
+    "sapien>=3.0.0b1",
+    "tensorflow-datasets>=4.9.9",
+    "tensorflow-hub>=0.16.1",
+    "tf-agents>=0.12.1",
+    "simulated-annealing",
+]
 
-[tool.isort]
-profile = "black"
-line_length = 120
-force_sort_within_sections = "True"
-order_by_type = "False"
+[build-system]
+requires = ["setuptools>=42"]
+build-backend = "setuptools.build_meta"
+
+[tool.uv.sources]
+simulated-annealing = { git = "https://github.com/nathanrooy/simulated-annealing" }
+simpler_env = { workspace = true }
+octo = { path = "./third_party/octo" }
+
+[tool.uv.workspace]
+members = ["."]

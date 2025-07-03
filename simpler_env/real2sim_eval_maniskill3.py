@@ -93,7 +93,7 @@ def main():
         if args.model is None:
             pass
         else:
-            from simpler_env.policies.rt1.rt1_model import RT1Inference
+            # from simpler_env.policies.rt1.rt1_model import RT1Inference
             from simpler_env.policies.octo.octo_model import OctoInference
             if args.model == "octo-base" or args.model == "octo-small":
                 model = OctoInference(model_type=args.model, policy_setup=policy_setup, init_rng=args.seed, action_scale=1)
@@ -129,6 +129,9 @@ def main():
         seed = args.seed + eps_count
         obs, _ = env.reset(seed=seed, options={"episode_id": torch.tensor([seed + i for i in range(args.num_envs)])})
         instruction = env.unwrapped.get_language_instruction()
+
+        # # NOTE: for table top tasks
+        # instruction = ["Lift the peg upright and place it on the table."] * args.num_envs
         print("instruction:", instruction[0])
         if model is not None:
             model.reset(instruction)
